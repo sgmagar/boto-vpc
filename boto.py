@@ -23,7 +23,7 @@ client = boto3.client(
 	'ec2', region_name=args.get('region'), aws_access_key_id=args.get('access_key'), 
 	aws_secret_access_key=args.get('secret_key'))
 
-if args.get('peer'):
+if 'peer' in args:
 	if all (k in foo for k in ('peer_owner_id', 'peer_vpc_id', 'vpc_id', 'peer_region')):
 		create_peer_vpc_connection(args)
 	else:
