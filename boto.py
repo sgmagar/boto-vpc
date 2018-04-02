@@ -16,7 +16,7 @@ parser.add_argument('--peer_region', help='The region code for the accepter VPC'
 args = parser.parse_args()
 args = vars(args)
 
-if all (k in args for k in ('access_key', 'secret_key', 'region'):
+if all (k in args for k in ('access_key', 'secret_key', 'region')):
     sys.exit('You have to provide both aws access_key, secret key, cidr_block and region')
 
 client = boto3.client(
@@ -24,7 +24,7 @@ client = boto3.client(
 	aws_secret_access_key=args.get('secret_key'))
 
 if args.get('peer'):
-	if all (k in foo for k in ('peer_owner_id', 'peer_vpc_id', 'vpc_id', 'peer_region'):
+	if all (k in foo for k in ('peer_owner_id', 'peer_vpc_id', 'vpc_id', 'peer_region')):
 		create_peer_vpc_connection(args)
 	else:
 		sys.exit('You have to pass peer_owner_id, peer_vpc_id, vpc_id, peer_region as args to create vpc peering commection')
@@ -32,18 +32,18 @@ if args.get('peer'):
 else:
 	if args.get('cidr_block'):
 		cidr_block = args.get('cidr_block')
-		create_vpc(cidr_block):
+		create_vpc(cidr_block)
 	else:
 		sys.exit('You have to pass cidr_block as args to create vpc')
 	
 
 
-def create_vpc(cidr_block)
+def create_vpc(cidr_block):
 	response = client.create_vpc(
     	CidrBlock='10.0.0.0/16',
 	)
 	if response.get('Vpc') and response.get('Vpc').get('VpcId'):
-		vpc_id = (response.get('Vpc').get('VpcId')
+		vpc_id = response.get('Vpc').get('VpcId')
 		with open('vpc.txt', 'a') as f:
 			f.write('VPC_ID: {}'.format(vpc_id))
 		print('VPC creation successfull with ID: {}'.format(vpc_id))
