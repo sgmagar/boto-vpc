@@ -26,3 +26,5 @@ This is the script for creation for vpc as well as vpc peering connection from c
   * `--peer_region` The region code for the accepter VPC
   
   To create VPC or VPC Peer Connection, *Run*: `python boto.py ` and pass those arguments.
+  
+  Testing
